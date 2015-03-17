@@ -48,6 +48,34 @@ public class Vuelos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        comboAero2 = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        llegada = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        Lsalida = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        horaS = new javax.swing.JTextField();
+        horaLL = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        ident = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        primera = new javax.swing.JLabel();
+        primeraPasajero = new javax.swing.JTextField();
+        primeraCosto = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        turista = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        turistaCosto = new javax.swing.JTextField();
+        turistaPasajero = new javax.swing.JTextField();
+        ejecutiva = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        ejecutivaCosto = new javax.swing.JTextField();
+        ejecutivaPasajero = new javax.swing.JTextField();
+        crearVuelo = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,6 +141,128 @@ public class Vuelos extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(51, 0, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        comboAero2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAero2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboAero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 190, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("Aeropuerto:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        jPanel2.add(llegada, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 260, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel7.setText("Lugar de Llegada:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+
+        Lsalida.setEditable(false);
+        Lsalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LsalidaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Lsalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 260, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel8.setText("Lugar de Salida:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+        jPanel2.add(horaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 260, -1));
+        jPanel2.add(horaLL, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 260, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel9.setText("Hora de Salida:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("Hora de LLegada:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+
+        ident.setEditable(false);
+        jPanel2.add(ident, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 170, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setText("ID:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        primera.setBackground(new java.awt.Color(204, 204, 255));
+        primera.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        primera.setForeground(new java.awt.Color(0, 0, 204));
+        primera.setText("Primera Clase");
+        jPanel2.add(primera, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
+        jPanel2.add(primeraPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 160, -1));
+        jPanel2.add(primeraCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 190, 140, -1));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel13.setText("Cantidad Pasajeros:");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel14.setText("Costo:");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, -1));
+
+        turista.setBackground(new java.awt.Color(204, 204, 255));
+        turista.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        turista.setForeground(new java.awt.Color(0, 51, 153));
+        turista.setText("Clase Turista");
+        jPanel2.add(turista, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel16.setText("Cantidad Pasajeros:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel17.setText("Costo:");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, -1, -1));
+        jPanel2.add(turistaCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 140, -1));
+
+        turistaPasajero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                turistaPasajeroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(turistaPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 160, -1));
+
+        ejecutiva.setBackground(new java.awt.Color(204, 204, 255));
+        ejecutiva.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        ejecutiva.setForeground(new java.awt.Color(0, 0, 204));
+        ejecutiva.setText("Clase Ejecutiva");
+        jPanel2.add(ejecutiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel19.setText("Cantidad Pasajeros:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel20.setText("Costo:");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 400, -1, -1));
+        jPanel2.add(ejecutivaCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 420, 140, -1));
+        jPanel2.add(ejecutivaPasajero, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 420, 160, -1));
+
+        crearVuelo.setBackground(new java.awt.Color(0, 0, 0));
+        crearVuelo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        crearVuelo.setForeground(new java.awt.Color(255, 255, 255));
+        crearVuelo.setText("REGISTRAR");
+        crearVuelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearVueloActionPerformed(evt);
+            }
+        });
+        jPanel2.add(crearVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vuelos.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
 
@@ -145,6 +295,8 @@ public class Vuelos extends javax.swing.JFrame {
         String pa=pais.getText().trim();
         String contrase=contraseña.getText().trim();
         
+        comboAero2.addItem(nom);
+        
         XmlRpcClient client = null;
         
             try { 
@@ -157,9 +309,7 @@ public class Vuelos extends javax.swing.JFrame {
            config.setServerURL(new URL("http://localhost:9000"));
            client=new XmlRpcClient();
            client.setConfig(config);
-         
-           
-           
+                   
            Object[] parametrosUsuario = new Object[]{conta,nom,pa,contrase};
            String dato=(String) client.execute("ListaAeropuerto",parametrosUsuario);
                 System.out.println("datos: "+dato);
@@ -190,7 +340,7 @@ public class Vuelos extends javax.swing.JFrame {
             cont=String.valueOf(contador2);
             System.out.println("contador2: "+cont);
             Object[] params4 = new Object[]{cont};
-            String dato2=(String) client.execute("MostrarListaAero",params4);
+            String dato2=(String) client.execute("MostrarListaVuelo",params4);
             System.out.println(dato2);
            
         } catch (XmlRpcException e) { 
@@ -199,6 +349,71 @@ public class Vuelos extends javax.swing.JFrame {
                 Logger.getLogger(Vuelos.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void LsalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsalidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LsalidaActionPerformed
+
+    private void turistaPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_turistaPasajeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_turistaPasajeroActionPerformed
+    int contador3=0;
+    private void crearVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearVueloActionPerformed
+         String aerop=comboAero2.getSelectedItem().toString();
+         String id=ident.getText().trim();
+         String salida=Lsalida.getText().trim();
+         String llega=llegada.getText().trim();
+         String hSalida=horaS.getText().trim();
+         String hLLegada=horaLL.getText().trim();
+         
+        XmlRpcClient client = null;
+        
+            try { 
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+           
+           contador3++;
+           String conta=String.valueOf(contador3);
+           System.out.println("cont1: "+conta);
+           config.setServerURL(new URL("http://localhost:9000"));
+           client=new XmlRpcClient();
+           client.setConfig(config);
+                   
+           Object[] parametrosVuelo = new Object[]{conta,id,aerop,salida,llega,hSalida,hLLegada};
+           String dato=(String) client.execute("ListaVuelos",parametrosVuelo);
+
+           
+           if(primera.getText().trim().equals("Primera Clase")){
+               Object[] parametrosCategoria = new Object[]{id,primera.getText().trim(),primeraPasajero.getText().trim(),primeraCosto.getText().trim()};
+               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);
+           }
+           if(turista.getText().trim().equals("Clase Turista")){
+               Object[] parametrosCategoria = new Object[]{id,turista.getText().trim(),turistaPasajero.getText().trim(),turistaCosto.getText().trim()};
+               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);  
+           }
+           if(ejecutiva.getText().trim().equals("Clase Turista")){
+               Object[] parametrosCategoria = new Object[]{id,ejecutiva.getText().trim(),ejecutiva.getText().trim(),ejecutiva.getText().trim()};
+               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);  
+           }
+           
+          
+          
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Vuelos.class.getName()).log(Level.SEVERE, null, ex);
+            }              
+    }//GEN-LAST:event_crearVueloActionPerformed
+
+    int contadorID=1010;
+    private void comboAero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAero2ActionPerformed
+        
+        contadorID+=15;
+        
+        ident.setText(String.valueOf(contadorID));
+        Lsalida.setText(comboAero2.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_comboAero2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,18 +454,46 @@ public class Vuelos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CrearAero;
+    private javax.swing.JTextField Lsalida;
+    private javax.swing.JComboBox comboAero2;
     private javax.swing.JTextField contraseña;
+    private javax.swing.JButton crearVuelo;
+    private javax.swing.JLabel ejecutiva;
+    private javax.swing.JTextField ejecutivaCosto;
+    private javax.swing.JTextField ejecutivaPasajero;
+    private javax.swing.JTextField horaLL;
+    private javax.swing.JTextField horaS;
+    private javax.swing.JTextField ident;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField llegada;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField pais;
+    private javax.swing.JLabel primera;
+    private javax.swing.JTextField primeraCosto;
+    private javax.swing.JTextField primeraPasajero;
+    private javax.swing.JLabel turista;
+    private javax.swing.JTextField turistaCosto;
+    private javax.swing.JTextField turistaPasajero;
     // End of variables declaration//GEN-END:variables
 }

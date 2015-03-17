@@ -59,20 +59,22 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         crear = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboVuelos2 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         estado = new javax.swing.JLabel();
+        comboAero2 = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         pasajeros = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox();
+        comboVuelos = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        estado2 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         comboAero = new javax.swing.JComboBox();
         ver = new javax.swing.JButton();
@@ -172,7 +174,12 @@ public class Usuarios extends javax.swing.JFrame {
         crear.setText("REGISTRAR");
         jPanel2.add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, -1));
 
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 220, -1));
+        comboVuelos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVuelos2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboVuelos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 220, -1));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primera Clase", "Clase Turista", "Clase Ejecutiva" }));
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 220, -1));
@@ -197,6 +204,13 @@ public class Usuarios extends javax.swing.JFrame {
         estado.setText("--------------");
         jPanel2.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, -1, -1));
 
+        comboAero2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAero2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboAero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 220, -1));
+
         jLabel14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 0, 0));
         jLabel14.setText("No. Total de Pasajeros:");
@@ -208,6 +222,11 @@ public class Usuarios extends javax.swing.JFrame {
         pasajeros.setText("0");
         jPanel2.add(pasajeros, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 10, -1));
 
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel17.setText("Aeropuerto:");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asignar_vuelo.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
 
@@ -215,7 +234,12 @@ public class Usuarios extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 180, -1));
+        comboVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboVuelosActionPerformed(evt);
+            }
+        });
+        jPanel3.add(comboVuelos, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 180, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 0, 0));
@@ -227,16 +251,21 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel16.setText("Estado:");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel17.setText("---------");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
+        estado2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        estado2.setForeground(new java.awt.Color(0, 0, 204));
+        estado2.setText("---------");
+        jPanel3.add(estado2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 0, 0));
         jLabel18.setText("Aeropuertos:");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
+        comboAero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAeroActionPerformed(evt);
+            }
+        });
         jPanel3.add(comboAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 200, -1));
 
         ver.setText("VER");
@@ -360,8 +389,13 @@ public class Usuarios extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jButton1ActionPerformed
     String cont2="";
+    ArrayList<String> aeros=new ArrayList();
+    ArrayList<String> vuelosaero=new ArrayList();
+    ArrayList<String> vueloEstado=new ArrayList();
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
-         try { 
+         
+        comboAero.removeAllItems();
+        try { 
             XmlRpcClient client = null;
 	    // Generar el Cliente 
 	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
@@ -372,13 +406,22 @@ public class Usuarios extends javax.swing.JFrame {
            client=new XmlRpcClient();
            client.setConfig(config);
          
-           for(int i=1;i<=2;i++){
+           for(int i=1;i<=100;i++){
             cont2=String.valueOf(i);
             System.out.println("contador2: "+cont2);
             Object[] params4 = new Object[]{cont2};
             String dato2=(String) client.execute("MostrarListaAero",params4);
+            String dato3=(String) client.execute("MostrarListaVuelo",params4);
+            String dato4=(String) client.execute("MostrarVueloAero",params4);
+            String dato5=(String) client.execute("MostrarEstadoVuelo",params4);
+            aeros.add(dato4);
+            vuelosaero.add(dato3);
+            vueloEstado.add(dato5);
             comboAero.addItem(dato2);
-            System.out.println(dato2);
+            comboAero2.addItem(dato2);
+           // comboVuelos.addItem(dato3+","+dato4);
+            
+            
            }
         } catch (XmlRpcException e) { 
 	    System.out.println("Error en XML-RPC: " + e.getMessage());
@@ -387,6 +430,51 @@ public class Usuarios extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_verActionPerformed
 
+    private void comboVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVuelosActionPerformed
+       
+    }//GEN-LAST:event_comboVuelosActionPerformed
+    private void comboAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAeroActionPerformed
+       comboVuelos.removeAllItems();
+       String d=comboAero.getSelectedItem().toString();
+       
+      try{ 
+      if(!d.isEmpty())
+         mostrar(d);
+      }catch(Exception e)
+      {
+          System.out.println(e);
+      }
+       
+    }//GEN-LAST:event_comboAeroActionPerformed
+
+    private void comboAero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAero2ActionPerformed
+       comboVuelos2.removeAllItems();
+       String d=comboAero2.getSelectedItem().toString();
+       
+       for(int i=0;i<aeros.size();i++)
+       {
+           if(aeros.get(i).equals(d))
+           {
+               comboVuelos2.addItem(vuelosaero.get(i)+":"+vueloEstado.get(i));
+           }
+       }
+      
+    }//GEN-LAST:event_comboAero2ActionPerformed
+
+    private void comboVuelos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboVuelos2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboVuelos2ActionPerformed
+     public void mostrar(String d)
+     {
+          for(int i=0;i<aeros.size();i++)
+       {
+           if(aeros.get(i).equals(d))
+           {
+               comboVuelos.addItem(vuelosaero.get(i)+":"+vueloEstado.get(i));
+           }
+       }
+     }
+          
     /**
      * @param args the command line arguments
      */                
@@ -451,15 +539,17 @@ public class Usuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField actual;
     private javax.swing.JComboBox comboAero;
+    private javax.swing.JComboBox comboAero2;
+    private javax.swing.JComboBox comboVuelos;
+    private javax.swing.JComboBox comboVuelos2;
     private javax.swing.JTextField contraseña;
     private javax.swing.JButton crear;
     private javax.swing.JTextField credito;
     private javax.swing.JTextField direccion;
     private javax.swing.JLabel estado;
+    private javax.swing.JLabel estado2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
