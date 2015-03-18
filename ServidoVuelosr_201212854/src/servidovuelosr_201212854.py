@@ -22,7 +22,7 @@ class Humano:
 class Nodos:
     
        
-    def __init__(self,indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10):
+    def __init__(self,indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10,dato11):
         self.siguiente=None
         self.anterior=None
         self.info=dato
@@ -34,6 +34,7 @@ class Nodos:
         self.info8=dato8
         self.info9=dato9
         self.info10=dato10
+        self.info11=dato11
         self.ind=indice
    
     def VerNodo(self):
@@ -66,6 +67,8 @@ class Nodos:
     def VerNodo10(self):
         return self.info10
     
+    def VerNodo11(self):
+        return self.info11
     
     
 class Lista:
@@ -81,8 +84,8 @@ class Lista:
         else:
             return False
         
-    def InsertarPrimero(self,indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10):
-        temporal=Nodos(indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10)
+    def InsertarPrimero(self,indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10,dato11):
+        temporal=Nodos(indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10,dato11)
         if self.vacia()==True:
             self.cabeza=temporal
             self.cola=temporal
@@ -102,6 +105,18 @@ class Lista:
             #else:
              #   print "No exitste"
            temporal=temporal.siguiente
+           
+    def listarCateg(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo2()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente
     
     def listarAerop(self,no):
         print("********"+no)
@@ -114,6 +129,53 @@ class Lista:
             #else:
              #   print "No exitste"
            temporal=temporal.siguiente
+           
+    def listarAeropDeVuelos(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo4()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente 
+           
+    def listarPasajeros(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo9()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente
+    def listarPasajerosTurista(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo10()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente
+           
+    def listarPasajerosEjecutiva(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo11()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente       
            
     def listarEstado(self,no):
         print("********"+no)
@@ -305,14 +367,14 @@ def MostrarLista(name):
      return listas.listar(str(name))
     
 def ListaAeropuerto(indice,dato,dato2,dato3):
-    listaAero.InsertarPrimero(indice,dato,dato2,dato3," "," "," "," "," "," ")
+    listaAero.InsertarPrimero(indice,dato,dato2,dato3," "," "," "," "," "," "," ")
 
 def MostrarListaAero(name):
      #listas.listar(name)
      return listaAero.listar(str(name))
     
-def ListaVuelos(indice,dato,dato2,dato3,dato4,dato5,dato6):    
-    listaVuelo.InsertarPrimero(indice,dato,dato2,dato3,dato4,dato5,dato6,"En Aeropuerto"," "," ")
+def ListaVuelos(indice,dato,dato2,dato3,dato4,dato5,dato6,dato8,dato9,dato10,dato11,dato12,dato13):    
+    listaVuelo.InsertarPrimero(indice,dato,dato2,dato3,dato4,dato5,dato6,"En Aeropuerto","Primera Clase: "+dato8+" Costo: "+dato11,"Clase Turista: "+dato9+" Costo: "+dato12,"Clase Ejecutiva: "+dato10+" Costo: "+dato13)
     
 def MostrarListaVuelo(name):
     return listaVuelo.listar(str(name))
@@ -323,11 +385,21 @@ def MostrarVueloAero(name):
 def MostrarEstadoVuelo(name):
     return listaVuelo.listarEstado(str(name))
 
+def MostrarAeropuertoDeVuelos(name):
+    return listaVuelo.listarAeropDeVuelos(str(name))
+    
 def ListaCategoria(idVuelo,clase,cantidad,costo):
     listaCategoria.InsertarPrimero(idVuelo,clase,cantidad,costo," "," "," "," "," "," ")
     
 def MostrarListaCategoria(name):    
-    listaCategoria.listar(setr(name))
+    return listaVuelo.listarPasajeros(str(name))
+    
+def MostrarListaCategoria2(name):    
+    return listaVuelo.listarPasajerosTurista(str(name))    
+  
+def MostrarListaCategoria3(name):    
+    return listaVuelo.listarPasajerosEjecutiva(str(name))    
+        
     
 server.register_function(list_contents)
 server.register_function(suma)
@@ -340,8 +412,12 @@ server.register_function(ListaVuelos)
 server.register_function(MostrarListaVuelo)
 server.register_function(MostrarVueloAero)
 server.register_function(MostrarEstadoVuelo)
+server.register_function(MostrarAeropuertoDeVuelos)
 server.register_function(ListaCategoria)
 server.register_function(MostrarListaCategoria)
+server.register_function(MostrarListaCategoria2)
+server.register_function(MostrarListaCategoria3)
+
 
 
 try:

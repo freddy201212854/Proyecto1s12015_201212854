@@ -339,8 +339,8 @@ public class Vuelos extends javax.swing.JFrame {
            
             cont=String.valueOf(contador2);
             System.out.println("contador2: "+cont);
-            Object[] params4 = new Object[]{cont};
-            String dato2=(String) client.execute("MostrarListaVuelo",params4);
+            Object[] params4 = new Object[]{"1040"};
+            String dato2=(String) client.execute("MostrarListaCategoria",params4);
             System.out.println(dato2);
            
         } catch (XmlRpcException e) { 
@@ -379,24 +379,10 @@ public class Vuelos extends javax.swing.JFrame {
            client=new XmlRpcClient();
            client.setConfig(config);
                    
-           Object[] parametrosVuelo = new Object[]{conta,id,aerop,salida,llega,hSalida,hLLegada};
+           Object[] parametrosVuelo = new Object[]{conta,id,aerop,salida,llega,hSalida,hLLegada,primeraPasajero.getText().trim(),turistaPasajero.getText().trim(),ejecutivaPasajero.getText().trim(),primeraCosto.getText().trim(),turistaCosto.getText().trim(),ejecutivaCosto.getText().trim()};
            String dato=(String) client.execute("ListaVuelos",parametrosVuelo);
-
            
-           if(primera.getText().trim().equals("Primera Clase")){
-               Object[] parametrosCategoria = new Object[]{id,primera.getText().trim(),primeraPasajero.getText().trim(),primeraCosto.getText().trim()};
-               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);
-           }
-           if(turista.getText().trim().equals("Clase Turista")){
-               Object[] parametrosCategoria = new Object[]{id,turista.getText().trim(),turistaPasajero.getText().trim(),turistaCosto.getText().trim()};
-               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);  
-           }
-           if(ejecutiva.getText().trim().equals("Clase Turista")){
-               Object[] parametrosCategoria = new Object[]{id,ejecutiva.getText().trim(),ejecutiva.getText().trim(),ejecutiva.getText().trim()};
-               String dato2=(String) client.execute("ListaCategoria",parametrosCategoria);  
-           }
-           
-          
+        
           
         } catch (XmlRpcException e) { 
 	    System.out.println("Error en XML-RPC: " + e.getMessage());
