@@ -23,7 +23,6 @@ import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 public class Usuarios extends javax.swing.JFrame {
 
     //static XmlRpcClient client = null;
-        static ArrayList<String> Linea=new ArrayList();
 
     public Usuarios() {
         initComponents();
@@ -75,6 +74,7 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        us = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         comboVuelos = new javax.swing.JComboBox();
@@ -163,13 +163,16 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel3.setText("Nombre:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("INICIO SESION");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 450, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
@@ -182,6 +185,7 @@ public class Usuarios extends javax.swing.JFrame {
         crear.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 18)); // NOI18N
         crear.setForeground(new java.awt.Color(255, 255, 255));
         crear.setText("REGISTRAR");
+        crear.setEnabled(false);
         crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearActionPerformed(evt);
@@ -194,29 +198,29 @@ public class Usuarios extends javax.swing.JFrame {
                 comboVuelos2ActionPerformed(evt);
             }
         });
-        jPanel2.add(comboVuelos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 220, -1));
+        jPanel2.add(comboVuelos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 220, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
         jLabel10.setText("Vuelos:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Categoria:");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 20));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, 20));
 
         prue2.setEditable(false);
-        jPanel2.add(prue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 240, -1));
+        jPanel2.add(prue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 240, -1));
 
         pru.setEditable(false);
-        jPanel2.add(pru, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 240, -1));
+        jPanel2.add(pru, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 240, -1));
 
         prue3.setEditable(false);
-        jPanel2.add(prue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 240, -1));
+        jPanel2.add(prue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 240, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primera Clase", "Clase Turista", "Clase Ejecutiva" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 220, -1));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 220, -1));
 
         salida.setEditable(false);
         jPanel2.add(salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 160, -1));
@@ -249,6 +253,11 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel17.setForeground(new java.awt.Color(255, 0, 0));
         jLabel17.setText("Hora LLegada");
         jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
+
+        us.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        us.setForeground(new java.awt.Color(255, 153, 0));
+        us.setText("Usuario");
+        jPanel2.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asignar_vuelo.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
@@ -380,6 +389,9 @@ public class Usuarios extends javax.swing.JFrame {
         
         System.out.println(nom+","+cont+","+","+usua+","+dir+","+","+tel+","+cred+","+","+dirActual);
 
+        crear.setEnabled(true);
+        us.setText(nom);
+        
           XmlRpcClient client = null;
         
             try { 
@@ -395,10 +407,10 @@ public class Usuarios extends javax.swing.JFrame {
          
            
            Object[] paramsavl = new Object[]{usua};
-            String datoavl=(String) client.execute("sins",paramsavl);           
+           String datoavl=(String) client.execute("sins",paramsavl);           
            System.out.println(datoavl);
            
-           Object[] parametrosUsuario = new Object[]{conta,nom,cont,usua,dir,tel,cred};
+           Object[] parametrosUsuario = new Object[]{conta,nom,cont,usua,dir,tel,cred,dirActual};
            String dato=(String) client.execute("ListaDoble",parametrosUsuario);
                 System.out.println("datos: "+dato);
           
@@ -414,23 +426,25 @@ public class Usuarios extends javax.swing.JFrame {
     String cont="";
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try { 
+            
+            crear.setEnabled(true);
+            
             XmlRpcClient client = null;
 	    // Generar el Cliente 
 	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 
            contador2+=1;
-
+              
            config.setServerURL(new URL("http://localhost:9000"));
                     
            client=new XmlRpcClient();
            client.setConfig(config);
          
            
-            cont=String.valueOf(contador2);
-            System.out.println("contador2: "+cont);
-            Object[] params4 = new Object[]{"1040"};
-            String dato2=(String) client.execute("MostrarListaCategoria",params4);
+            Object[] params4 = new Object[]{nombre.getText().trim(),contraseña.getText().trim()};
+            String dato2=(String) client.execute("MostrarInicioSesion",params4);
             System.out.println(dato2);
+            us.setText(dato2);
            
         } catch (XmlRpcException e) { 
 	    System.out.println("Error en XML-RPC: " + e.getMessage());
@@ -758,6 +772,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JButton registrar;
     private javax.swing.JTextField salida;
     private javax.swing.JTextField telefono;
+    private javax.swing.JLabel us;
     private javax.swing.JTextField usuario;
     private javax.swing.JButton verVuel;
     private javax.swing.JButton veraero;

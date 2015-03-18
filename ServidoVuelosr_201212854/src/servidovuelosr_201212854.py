@@ -106,6 +106,30 @@ class Lista:
              #   print "No exitste"
            temporal=temporal.siguiente
            
+    def Reporte1(self,nom):
+        print("********"+nom)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(nom):    
+                return temporal.VerNodo()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente      
+           
+    def InicioSesion(self,no,cont):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no) and temporal.VerNodo2()==str(cont) :    
+                return temporal.VerNodo()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente       
+           
     def listarLLegadas(self,no):
         print("********"+no)
         temporal=self.cabeza
@@ -433,8 +457,8 @@ def suma(x,y):
     return x+y
 
 
-def ListaDoble(indice,dato,dato2,dato3,dato4,dato5,dato6):
-    listas.InsertarPrimero(indice,dato,dato2,dato3,dato4,dato5,dato6," "," "," ")
+def ListaDoble(indice,dato,dato2,dato3,dato4,dato5,dato6,dato7):
+    listas.InsertarPrimero(indice,dato,dato2,dato3,dato4,dato5,dato6,dato7," "," "," ")
   
 def MostrarLista(name):
      #listas.listar(name)
@@ -504,6 +528,12 @@ def MostrarUsuarioVueloHoraS(name):
 def MostrarUsuarioVueloHoraLL(name):
     return listaUsuariosVuelos.listarHoraLLegada(str(name))
 
+def MostrarInicioSesion(nom,cont):
+    return listas.InicioSesion(str(nom),str(cont))
+
+def MostrarReporte1(nom):
+    return listaUsuariosVuelos.Reporte1(str(nom))
+
 server.register_function(list_contents)
 server.register_function(suma)
 server.register_function(ListaDoble)
@@ -530,6 +560,8 @@ server.register_function(MostrarUsuariosVuelosSalida)
 server.register_function(MostrarUsuariosVuelosLLegada)
 server.register_function(MostrarUsuarioVueloHoraS)
 server.register_function(MostrarUsuarioVueloHoraLL)
+server.register_function(MostrarInicioSesion)
+server.register_function(MostrarReporte1)
 
 try:
     print 'Use Control-C to exit'
