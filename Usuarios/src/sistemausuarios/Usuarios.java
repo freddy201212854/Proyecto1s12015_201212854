@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
@@ -66,6 +67,14 @@ public class Usuarios extends javax.swing.JFrame {
         pru = new javax.swing.JTextField();
         prue3 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
+        salida = new javax.swing.JTextField();
+        llegada = new javax.swing.JTextField();
+        horaS = new javax.swing.JTextField();
+        horaLL = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         comboVuelos = new javax.swing.JComboBox();
@@ -76,6 +85,9 @@ public class Usuarios extends javax.swing.JFrame {
         verVuel = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        VerUsuariosVuelos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,6 +182,11 @@ public class Usuarios extends javax.swing.JFrame {
         crear.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 18)); // NOI18N
         crear.setForeground(new java.awt.Color(255, 255, 255));
         crear.setText("REGISTRAR");
+        crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearActionPerformed(evt);
+            }
+        });
         jPanel2.add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, -1, -1));
 
         comboVuelos2.addActionListener(new java.awt.event.ActionListener() {
@@ -188,12 +205,50 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 0, 0));
         jLabel11.setText("Categoria:");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, 20));
+
+        prue2.setEditable(false);
         jPanel2.add(prue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 240, -1));
+
+        pru.setEditable(false);
         jPanel2.add(pru, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 240, -1));
+
+        prue3.setEditable(false);
         jPanel2.add(prue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 240, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Primera Clase", "Clase Turista", "Clase Ejecutiva" }));
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 220, -1));
+
+        salida.setEditable(false);
+        jPanel2.add(salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 160, -1));
+
+        llegada.setEditable(false);
+        jPanel2.add(llegada, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 160, -1));
+
+        horaS.setEditable(false);
+        jPanel2.add(horaS, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 160, -1));
+
+        horaLL.setEditable(false);
+        jPanel2.add(horaLL, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 160, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("Salida:");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel14.setText("LLegada");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel16.setText("Hora Salida:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel17.setText("Hora LLegada");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/asignar_vuelo.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
@@ -253,18 +308,41 @@ public class Usuarios extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("OBSERVACION DE VUELOS", jPanel3);
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/observar_Vuelos.jpg"))); // NOI18N
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        VerUsuariosVuelos.setBackground(new java.awt.Color(0, 0, 0));
+        VerUsuariosVuelos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        VerUsuariosVuelos.setForeground(new java.awt.Color(255, 255, 255));
+        VerUsuariosVuelos.setText("Ver Usuarios Vuelos");
+        VerUsuariosVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerUsuariosVuelosActionPerformed(evt);
+            }
+        });
+        jPanel4.add(VerUsuariosVuelos, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Usuario", "Vuelo", "Salida", "LLegada", "Hora Salida", "Hora LLegada"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 580, 320));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/observar_Vuelos.jpg"))); // NOI18N
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jTabbedPane1.addTab("LISTADO DE VUELOS", jPanel4);
 
@@ -427,11 +505,18 @@ public class Usuarios extends javax.swing.JFrame {
             String dato2=(String) client.execute("MostrarAeropuertoDeVuelos",params4);
             String dato3=(String) client.execute("MostrarListaCategoria",params4);
             String dato4=(String) client.execute("MostrarListaCategoria2",params4);
-            String dato5=(String) client.execute("MostrarListaCategoria3",params4);
+            String dato5=(String) client.execute("MostrarListaCategoria3",params4);          
+            String dato6=(String) client.execute("MostrarAeroVuelosHoraS",params4);
+            String dato7=(String) client.execute("MostrarAeroVuelosHoraLL",params4); 
+            String dato8=(String) client.execute("MostrarAeroVuelosSalida",params4);
             //aeros.add(dato4);
           //  vuelosaero.add(dato3);
             //vueloEstado.add(dato5);
               actual.setText(dato2);
+              salida.setText(dato8);
+              llegada.setText(dato2);
+              horaS.setText(dato6);
+              horaLL.setText(dato7);
               pru.setText(dato3);
               prue2.setText(dato4);
               prue3.setText(dato5);
@@ -466,7 +551,7 @@ public class Usuarios extends javax.swing.JFrame {
             String cont2=String.valueOf(i);
             System.out.println("contador2: "+cont2);
             Object[] params4 = new Object[]{cont2};
-            //String dato2=(String) client.execute("MostrarListaAero",params4);
+           // String dato2=(String) client.execute("MostrarListaAero",params4);
             String dato3=(String) client.execute("MostrarListaVuelo",params4);
             //String dato4=(String) client.execute("MostrarVueloAero",params4);
             String dato5=(String) client.execute("MostrarEstadoVuelo",params4);
@@ -486,6 +571,82 @@ public class Usuarios extends javax.swing.JFrame {
                 Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
     }//GEN-LAST:event_verVuelActionPerformed
+
+    int co=0;
+    private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
+
+        
+        
+        XmlRpcClient client = null;
+        
+            try { 
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+           
+           co++;
+           String conta=String.valueOf(co);
+           System.out.println("cont1: "+conta);
+           config.setServerURL(new URL("http://localhost:9000"));
+           client=new XmlRpcClient();
+           client.setConfig(config);
+                   
+           Object[] parametrosVuelo = new Object[]{conta,nombre.getText().trim(),comboVuelos2.getSelectedItem().toString(),salida.getText(),llegada.getText(),horaS.getText(),horaLL.getText()};
+           String dato=(String) client.execute("UsuariosVuelos",parametrosVuelo);
+           
+        
+          
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+    }//GEN-LAST:event_crearActionPerformed
+
+    private void VerUsuariosVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerUsuariosVuelosActionPerformed
+           try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+          jTable1.getTableHeader().setReorderingAllowed(false) ;
+
+        DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
+        Object [] filas=new Object[modelo.getColumnCount()];
+             
+        
+         for(int i=1;i<=100;i++){
+             String cont=String.valueOf(i);
+            Object[] params4 = new Object[]{cont};
+            String dato2=(String) client.execute("MostrarUsuariosVuelos",params4);
+            String dato3=(String) client.execute("MostrarUsuariosVuelosVuelo",params4);
+            String dato4=(String) client.execute("MostrarUsuariosVuelosSalida",params4);
+            String dato5=(String) client.execute("MostrarUsuariosVuelosLLegada",params4);
+            String dato6=(String) client.execute("MostrarUsuarioVueloHoraS",params4);
+            String dato7=(String) client.execute("MostrarUsuarioVueloHoraLL",params4);
+            
+             System.out.println(dato2);
+            filas[0]=dato2;
+            filas[1]=dato3;
+            filas[2]=dato4;
+            filas[3]=dato5;
+            filas[4]=dato6;
+            filas[5]=dato7;
+        //combo.addItem(nom);
+        modelo.addRow(filas);
+         }
+           
+           
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+    }//GEN-LAST:event_VerUsuariosVuelosActionPerformed
         
     /**
      * @param args the command line arguments
@@ -549,6 +710,7 @@ public class Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton VerUsuariosVuelos;
     private javax.swing.JTextField actual;
     private javax.swing.JComboBox comboAero;
     private javax.swing.JComboBox comboVuelos;
@@ -557,13 +719,19 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JButton crear;
     private javax.swing.JTextField credito;
     private javax.swing.JTextField direccion;
+    private javax.swing.JTextField horaLL;
+    private javax.swing.JTextField horaS;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -579,12 +747,16 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField llegada;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField pru;
     private javax.swing.JTextField prue2;
     private javax.swing.JTextField prue3;
     private javax.swing.JButton registrar;
+    private javax.swing.JTextField salida;
     private javax.swing.JTextField telefono;
     private javax.swing.JTextField usuario;
     private javax.swing.JButton verVuel;

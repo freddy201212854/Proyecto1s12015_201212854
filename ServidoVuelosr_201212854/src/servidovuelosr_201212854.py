@@ -106,12 +106,48 @@ class Lista:
              #   print "No exitste"
            temporal=temporal.siguiente
            
+    def listarLLegadas(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo4()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente
+           
+    def listarHoraSalida(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo5()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente
+           
+    def listarHoraLLegada(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo6()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente       
+           
     def listarCateg(self,no):
         print("********"+no)
         temporal=self.cabeza
         while temporal!=None:
            if temporal.VerNodo7()==str(no):    
-                return temporal.VerNodo2()
+                return temporal.VerNodo3()
                 #print("Existe"+temporal.VerNodo())
                #print temporal.VerNodo2()
             #else:
@@ -142,6 +178,42 @@ class Lista:
              #   print "No exitste"
            temporal=temporal.siguiente 
            
+    def listarAeropDeVuelosHoraS(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo5()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente 
+           
+    def listarAeropDeVuelosHoraLL(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo6()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente   
+           
+    def listarAeropDeVuelosSalida(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo()==str(no):    
+                return temporal.VerNodo2()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente          
+           
     def listarPasajeros(self,no):
         print("********"+no)
         temporal=self.cabeza
@@ -153,6 +225,7 @@ class Lista:
             #else:
              #   print "No exitste"
            temporal=temporal.siguiente
+           
     def listarPasajerosTurista(self,no):
         print("********"+no)
         temporal=self.cabeza
@@ -342,6 +415,7 @@ listas=Lista()
 listaAero=Lista()
 listaVuelo=Lista()
 listaCategoria=Lista()
+listaUsuariosVuelos=Lista()
 nodos=Nodo("fr",None,None)
 # Expose a function
 
@@ -387,7 +461,16 @@ def MostrarEstadoVuelo(name):
 
 def MostrarAeropuertoDeVuelos(name):
     return listaVuelo.listarAeropDeVuelos(str(name))
-    
+
+def MostrarAeroVuelosHoraS(name):
+    return listaVuelo.listarAeropDeVuelosHoraS(str(name))
+
+def MostrarAeroVuelosHoraLL(name):
+    return listaVuelo.listarAeropDeVuelosHoraLL(str(name))
+
+def MostrarAeroVuelosSalida(name):
+    return listaVuelo.listarAeropDeVuelosSalida(str(name))
+
 def ListaCategoria(idVuelo,clase,cantidad,costo):
     listaCategoria.InsertarPrimero(idVuelo,clase,cantidad,costo," "," "," "," "," "," ")
     
@@ -398,9 +481,29 @@ def MostrarListaCategoria2(name):
     return listaVuelo.listarPasajerosTurista(str(name))    
   
 def MostrarListaCategoria3(name):    
-    return listaVuelo.listarPasajerosEjecutiva(str(name))    
+    return listaVuelo.listarPasajerosEjecutiva(str(name))  
+
+def UsuariosVuelos(conta,usuario,vuelo,salida,llegada,hs,hll):
+    listaUsuariosVuelos.InsertarPrimero(conta,usuario,vuelo,salida,llegada,hs,hll," "," "," "," ")
         
-    
+def MostrarUsuariosVuelos(name): 
+    return listaUsuariosVuelos.listar(str(name))
+
+def MostrarUsuariosVuelosVuelo(name):
+    return listaUsuariosVuelos.listarAerop(str(name))
+
+def MostrarUsuariosVuelosSalida(name):
+    return listaUsuariosVuelos.listarCateg(str(name))
+
+def MostrarUsuariosVuelosLLegada(name):
+    return listaUsuariosVuelos.listarLLegadas(str(name))
+
+def MostrarUsuarioVueloHoraS(name):
+    return listaUsuariosVuelos.listarHoraSalida(str(name))
+
+def MostrarUsuarioVueloHoraLL(name):
+    return listaUsuariosVuelos.listarHoraLLegada(str(name))
+
 server.register_function(list_contents)
 server.register_function(suma)
 server.register_function(ListaDoble)
@@ -413,12 +516,20 @@ server.register_function(MostrarListaVuelo)
 server.register_function(MostrarVueloAero)
 server.register_function(MostrarEstadoVuelo)
 server.register_function(MostrarAeropuertoDeVuelos)
+server.register_function(MostrarAeroVuelosHoraS)
+server.register_function(MostrarAeroVuelosHoraLL)
+server.register_function(MostrarAeroVuelosSalida)
 server.register_function(ListaCategoria)
 server.register_function(MostrarListaCategoria)
 server.register_function(MostrarListaCategoria2)
 server.register_function(MostrarListaCategoria3)
-
-
+server.register_function(UsuariosVuelos)
+server.register_function(MostrarUsuariosVuelos)
+server.register_function(MostrarUsuariosVuelosVuelo)
+server.register_function(MostrarUsuariosVuelosSalida)
+server.register_function(MostrarUsuariosVuelosLLegada)
+server.register_function(MostrarUsuarioVueloHoraS)
+server.register_function(MostrarUsuarioVueloHoraLL)
 
 try:
     print 'Use Control-C to exit'
