@@ -105,6 +105,30 @@ class Lista:
             #else:
              #   print "No exitste"
            temporal=temporal.siguiente
+           
+    def listarContrasenia(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo2()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente 
+           
+    def listarNameId(self,no):
+        print("********"+no)
+        temporal=self.cabeza
+        while temporal!=None:
+           if temporal.VerNodo7()==str(no):    
+                return temporal.VerNodo3()
+                #print("Existe"+temporal.VerNodo())
+               #print temporal.VerNodo2()
+            #else:
+             #   print "No exitste"
+           temporal=temporal.siguiente       
                 
     
     def Reporte1(self,nom):
@@ -545,6 +569,12 @@ def MostrarInicioSesion(nom,cont):
 def MostrarReporte1(nom):
     return listaUsuariosVuelos.Reporte1(str(nom))
 
+def MostrarContrasenia(nom):
+    return listas.listarContrasenia(str(nom))
+
+def MostrarNameId(nom):
+    return listas.listarNameId(str(nom))
+
 
 server.register_function(list_contents)
 server.register_function(suma)
@@ -577,6 +607,8 @@ server.register_function(MostrarReporte1)
 server.register_function(MostrarSins)
 server.register_function(sins2)
 server.register_function(MostrarSins2)
+server.register_function(MostrarContrasenia)
+server.register_function(MostrarNameId)
 
 try:
     print 'Use Control-C to exit'

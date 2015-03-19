@@ -42,7 +42,6 @@ public class Vuelos extends javax.swing.JFrame {
         pais = new javax.swing.JTextField();
         contraseña = new javax.swing.JTextField();
         CrearAero = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -76,6 +75,7 @@ public class Vuelos extends javax.swing.JFrame {
         ejecutivaCosto = new javax.swing.JTextField();
         ejecutivaPasajero = new javax.swing.JTextField();
         crearVuelo = new javax.swing.JButton();
+        registro2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,14 +106,6 @@ public class Vuelos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(CrearAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(102, 102, 102));
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -263,6 +255,16 @@ public class Vuelos extends javax.swing.JFrame {
         });
         jPanel2.add(crearVuelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
 
+        registro2.setBackground(new java.awt.Color(0, 0, 0));
+        registro2.setForeground(new java.awt.Color(255, 255, 255));
+        registro2.setText("Registro");
+        registro2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registro2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(registro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 480, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vuelos.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 540));
 
@@ -323,33 +325,6 @@ public class Vuelos extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearAeroActionPerformed
     int contador2=0;
     String cont="";
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-             try { 
-            XmlRpcClient client = null;
-	    // Generar el Cliente 
-	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
-
-           contador2+=1;
-
-           config.setServerURL(new URL("http://localhost:9000"));
-                    
-           client=new XmlRpcClient();
-           client.setConfig(config);
-         
-           
-            cont=String.valueOf(contador2);
-            System.out.println("contador2: "+cont);
-            Object[] params4 = new Object[]{"1040"};
-            String dato2=(String) client.execute("MostrarListaCategoria",params4);
-            System.out.println(dato2);
-           
-        } catch (XmlRpcException e) { 
-	    System.out.println("Error en XML-RPC: " + e.getMessage());
-	}   catch (MalformedURLException ex) {
-                Logger.getLogger(Vuelos.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void LsalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsalidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LsalidaActionPerformed
@@ -379,14 +354,11 @@ public class Vuelos extends javax.swing.JFrame {
            client=new XmlRpcClient();
            client.setConfig(config);
            
-           Object[] paramsavl = new Object[]{id};
-           String datoavl=(String) client.execute("sins2",paramsavl);           
-           System.out.println(datoavl);
-           
            Object[] parametrosVuelo = new Object[]{conta,id,aerop,salida,llega,hSalida,hLLegada,primeraPasajero.getText().trim(),turistaPasajero.getText().trim(),ejecutivaPasajero.getText().trim(),primeraCosto.getText().trim(),turistaCosto.getText().trim(),ejecutivaCosto.getText().trim()};
            String dato=(String) client.execute("ListaVuelos",parametrosVuelo);
            
-        
+        Object[] paramsavl = new Object[]{id};
+        String datoavl=(String) client.execute("sins2",paramsavl); 
           
         } catch (XmlRpcException e) { 
 	    System.out.println("Error en XML-RPC: " + e.getMessage());
@@ -404,6 +376,37 @@ public class Vuelos extends javax.swing.JFrame {
         Lsalida.setText(comboAero2.getSelectedItem().toString());
         
     }//GEN-LAST:event_comboAero2ActionPerformed
+int con4=0;
+    private void registro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registro2ActionPerformed
+        String aerop=comboAero2.getSelectedItem().toString();
+         String id=ident.getText().trim();
+         String salida=Lsalida.getText().trim();
+         String llega=llegada.getText().trim();
+         String hSalida=horaS.getText().trim();
+         String hLLegada=horaLL.getText().trim();
+         
+        XmlRpcClient client = null;
+        
+            try { 
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+           
+           con4++;
+           String conta=String.valueOf(con4);
+           System.out.println("cont1: "+conta);
+           config.setServerURL(new URL("http://localhost:9000"));
+           client=new XmlRpcClient();
+           client.setConfig(config);
+           
+        Object[] paramsavl = new Object[]{id};
+        String datoavl=(String) client.execute("sins2",paramsavl); 
+          
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Vuelos.class.getName()).log(Level.SEVERE, null, ex);
+            }              
+    }//GEN-LAST:event_registro2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,7 +457,6 @@ public class Vuelos extends javax.swing.JFrame {
     private javax.swing.JTextField horaLL;
     private javax.swing.JTextField horaS;
     private javax.swing.JTextField ident;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -482,6 +484,7 @@ public class Vuelos extends javax.swing.JFrame {
     private javax.swing.JLabel primera;
     private javax.swing.JTextField primeraCosto;
     private javax.swing.JTextField primeraPasajero;
+    private javax.swing.JButton registro2;
     private javax.swing.JLabel turista;
     private javax.swing.JTextField turistaCosto;
     private javax.swing.JTextField turistaPasajero;

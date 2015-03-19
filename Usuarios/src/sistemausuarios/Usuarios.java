@@ -85,9 +85,10 @@ public class Usuarios extends javax.swing.JFrame {
         verVuel = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        VerUsuariosVuelos = new javax.swing.JButton();
+        cargarusua = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -319,27 +320,27 @@ public class Usuarios extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        VerUsuariosVuelos.setBackground(new java.awt.Color(0, 0, 0));
-        VerUsuariosVuelos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        VerUsuariosVuelos.setForeground(new java.awt.Color(255, 255, 255));
-        VerUsuariosVuelos.setText("Ver Usuarios Vuelos");
-        VerUsuariosVuelos.addActionListener(new java.awt.event.ActionListener() {
+        cargarusua.setBackground(new java.awt.Color(0, 0, 0));
+        cargarusua.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cargarusua.setForeground(new java.awt.Color(255, 255, 255));
+        cargarusua.setText("Cargar Usuarios Vuelos");
+        cargarusua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerUsuariosVuelosActionPerformed(evt);
+                cargarusuaActionPerformed(evt);
             }
         });
-        jPanel4.add(VerUsuariosVuelos, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
+        jPanel4.add(cargarusua, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Usuario", "Vuelo", "Salida", "LLegada", "Hora Salida", "Hora LLegada"
+                "Usuario", "Vuelo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -349,6 +350,17 @@ public class Usuarios extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 580, 320));
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Mostrar Datos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/observar_Vuelos.jpg"))); // NOI18N
         jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -615,8 +627,9 @@ public class Usuarios extends javax.swing.JFrame {
                 Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
             }   
     }//GEN-LAST:event_crearActionPerformed
-
-    private void VerUsuariosVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerUsuariosVuelosActionPerformed
+       ArrayList<String>Infovuelos=new ArrayList();
+       ArrayList<String> idVuelo=new ArrayList();
+    private void cargarusuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarusuaActionPerformed
            try { 
             XmlRpcClient client = null;
 	    // Generar el Cliente 
@@ -643,15 +656,9 @@ public class Usuarios extends javax.swing.JFrame {
             String dato6=(String) client.execute("MostrarUsuarioVueloHoraS",params4);
             String dato7=(String) client.execute("MostrarUsuarioVueloHoraLL",params4);
             
-             System.out.println(dato2);
-            filas[0]=dato2;
-            filas[1]=dato3;
-            filas[2]=dato4;
-            filas[3]=dato5;
-            filas[4]=dato6;
-            filas[5]=dato7;
-        //combo.addItem(nom);
-        modelo.addRow(filas);
+            idVuelo.add(dato2);
+            Infovuelos.add(dato3+"    "+dato4+"     "+dato5+"     "+dato6+"     "+"      "+dato7);
+           
          }
            
            
@@ -660,7 +667,36 @@ public class Usuarios extends javax.swing.JFrame {
 	}   catch (MalformedURLException ex) {
                 Logger.getLogger(Usuarios.class.getName()).log(Level.SEVERE, null, ex);
             }   
-    }//GEN-LAST:event_VerUsuariosVuelosActionPerformed
+    }//GEN-LAST:event_cargarusuaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+           
+        
+          jTable1.getTableHeader().setReorderingAllowed(false) ;
+
+        DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
+        Object [] filas=new Object[modelo.getColumnCount()];
+        
+         for (int i = 0; i < jTable1.getRowCount(); i++) {
+           modelo.removeRow(i);
+           i-=1;
+        }
+        
+        
+         for(int i=0;i<idVuelo.size();i++){
+            
+             if(idVuelo.get(i).equals(us.getText()))
+             {
+                 filas[0]=idVuelo.get(i);
+                 filas[1]=Infovuelos.get(i);
+                         modelo.addRow(filas);
+
+             }         
+         }
+           
+           
+         
+    }//GEN-LAST:event_jButton2ActionPerformed
         
     /**
      * @param args the command line arguments
@@ -724,8 +760,8 @@ public class Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VerUsuariosVuelos;
     private javax.swing.JTextField actual;
+    private javax.swing.JButton cargarusua;
     private javax.swing.JComboBox comboAero;
     private javax.swing.JComboBox comboVuelos;
     private javax.swing.JComboBox comboVuelos2;
@@ -736,6 +772,7 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JTextField horaLL;
     private javax.swing.JTextField horaS;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

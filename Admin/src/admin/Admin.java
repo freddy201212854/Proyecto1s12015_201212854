@@ -8,14 +8,18 @@ package admin;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.xmlrpc.XmlRpcException;
@@ -46,13 +50,14 @@ public class Admin extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        vuelos = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        cargarUsua = new javax.swing.JButton();
-        CargandoVuelos = new javax.swing.JButton();
-        CrearPDF = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        vuelr3 = new javax.swing.JComboBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        vueloR3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        verListaDobleVuelos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -60,17 +65,149 @@ public class Admin extends javax.swing.JFrame {
         VerAero = new javax.swing.JButton();
         VuelsoR2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        vuelos = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        cargarUsua = new javax.swing.JButton();
+        CargandoVuelos = new javax.swing.JButton();
+        CrearPDF = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         listaDobleAero = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+
+        jTabbedPane1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        jPanel4.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        vuelr3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vuelr3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(vuelr3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 173, -1));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "vuelo", "usuario"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable3);
+
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 690, 250));
+
+        vueloR3.setBackground(new java.awt.Color(0, 0, 0));
+        vueloR3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        vueloR3.setForeground(new java.awt.Color(255, 255, 255));
+        vueloR3.setText("Cargar Vuelo");
+        vueloR3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vueloR3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(vueloR3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, -1, -1));
+
+        jButton5.setBackground(new java.awt.Color(0, 0, 0));
+        jButton5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Cargar usuarios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 420, -1, -1));
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Crear PDF");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+
+        verListaDobleVuelos.setBackground(new java.awt.Color(0, 0, 0));
+        verListaDobleVuelos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        verListaDobleVuelos.setForeground(new java.awt.Color(255, 255, 255));
+        verListaDobleVuelos.setText("Ver Lista Doble de Vuelos usuarios");
+        verListaDobleVuelos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verListaDobleVuelosActionPerformed(evt);
+            }
+        });
+        jPanel4.add(verListaDobleVuelos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, -1));
+
+        jTabbedPane1.addTab("REPORTE1", jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Aeropuerto", "Vuelo"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 690, 250));
+
+        comboAeropuerto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAeropuertoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboAeropuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 180, -1));
+
+        VerAero.setBackground(new java.awt.Color(0, 0, 0));
+        VerAero.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        VerAero.setForeground(new java.awt.Color(255, 255, 255));
+        VerAero.setText("Ver Aeropuertos");
+        VerAero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerAeroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(VerAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, -1));
+
+        VuelsoR2.setBackground(new java.awt.Color(0, 0, 0));
+        VuelsoR2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        VuelsoR2.setForeground(new java.awt.Color(255, 255, 255));
+        VuelsoR2.setText("Cargar Vuelos");
+        VuelsoR2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VuelsoR2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(VuelsoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Crear PDF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+
+        jTabbedPane1.addTab("REPORTE 2", jPanel2);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -91,6 +228,9 @@ public class Admin extends javax.swing.JFrame {
         jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
+        cargarUsua.setBackground(new java.awt.Color(0, 0, 0));
+        cargarUsua.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cargarUsua.setForeground(new java.awt.Color(255, 255, 255));
         cargarUsua.setText("Cargar Usuarios");
         cargarUsua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +238,9 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        CargandoVuelos.setBackground(new java.awt.Color(0, 0, 0));
+        CargandoVuelos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        CargandoVuelos.setForeground(new java.awt.Color(255, 255, 255));
         CargandoVuelos.setText("Cargar Vuelos");
         CargandoVuelos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +248,9 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        CrearPDF.setBackground(new java.awt.Color(0, 0, 0));
+        CrearPDF.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        CrearPDF.setForeground(new java.awt.Color(255, 255, 255));
         CrearPDF.setText("CrearPDF");
         CrearPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,22 +262,23 @@ public class Admin extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(CargandoVuelos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cargarUsua))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(CrearPDF)
-                        .addGap(100, 100, 100))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(CargandoVuelos)
+                        .addGap(36, 36, 36)
+                        .addComponent(cargarUsua)
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(CrearPDF)
+                        .addGap(338, 338, 338))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,140 +286,53 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CrearPDF)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cargarUsua)
                     .addComponent(CargandoVuelos))
                 .addGap(36, 36, 36))
         );
 
-        jTabbedPane1.addTab("REPORTE 1", jPanel1);
+        jTabbedPane1.addTab("REPORTE3", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Aeropuerto", "Vuelo"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 600, 300));
-
-        comboAeropuerto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAeropuertoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(comboAeropuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, -1));
-
-        VerAero.setText("Ver Aeropuertos");
-        VerAero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerAeroActionPerformed(evt);
-            }
-        });
-        jPanel2.add(VerAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, -1, -1));
-
-        VuelsoR2.setText("Cargar Vuelos");
-        VuelsoR2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VuelsoR2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(VuelsoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, -1, -1));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
-
-        jTabbedPane1.addTab("REPORTE 2", jPanel2);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 954, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("REPORTE3", jPanel4);
-
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
+        jButton2.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 24)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ARBOL AVL DE USUARIOS");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 24)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("ARBOL DE VUELOS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
-        listaDobleAero.setText("Generar");
+        listaDobleAero.setBackground(new java.awt.Color(0, 0, 0));
+        listaDobleAero.setFont(new java.awt.Font("Rockwell Extra Bold", 1, 24)); // NOI18N
+        listaDobleAero.setForeground(new java.awt.Color(255, 255, 255));
+        listaDobleAero.setText("Lista Doble Aeropuerto");
         listaDobleAero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listaDobleAeroActionPerformed(evt);
             }
         });
-
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(554, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton4)
-                                    .addComponent(jButton3))
-                                .addGap(23, 23, 23)))
-                        .addGap(243, 243, 243))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(listaDobleAero)
-                        .addGap(302, 302, 302))))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton2)
-                .addGap(49, 49, 49)
-                .addComponent(jButton3)
-                .addGap(71, 71, 71)
-                .addComponent(listaDobleAero)
-                .addGap(49, 49, 49)
-                .addComponent(jButton4)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
+        jPanel5.add(listaDobleAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
         jTabbedPane1.addTab("ESTRUCTURAS", jPanel5);
 
@@ -282,15 +342,15 @@ public class Admin extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 530));
@@ -391,7 +451,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_CargandoVuelosActionPerformed
 
     private void CrearPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPDFActionPerformed
-        CrearPDF(jTable1,"REPORTE1");
+        CrearPDF(jTable1,"REPORTE3");
     }//GEN-LAST:event_CrearPDFActionPerformed
 
     private void VerAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerAeroActionPerformed
@@ -506,6 +566,20 @@ public class Admin extends javax.swing.JFrame {
 	}   catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
+          
+          
+      String seleccionado="AVLUsuarios.png";
+        try {
+                File path = new File ("C:\\Users\\freddy\\Desktop\\Reportes\\"+seleccionado);
+                if(path.exists()){
+                 Desktop.getDesktop().open(path);
+                }else{
+                  JOptionPane.showMessageDialog(this, "No existe el Archivo");
+                }
+                }catch (IOException ex) {
+                ex.printStackTrace();
+           }
+          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -531,6 +605,19 @@ public class Admin extends javax.swing.JFrame {
 	}   catch (MalformedURLException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
             }
+        
+        String seleccionado="AVLId.png";
+        try {
+                File path = new File ("C:\\Users\\freddy\\Desktop\\Reportes\\"+seleccionado);
+                if(path.exists()){
+                 Desktop.getDesktop().open(path);
+                }else{
+                  JOptionPane.showMessageDialog(this, "No existe el Archivo");
+                }
+                }catch (IOException ex) {
+                ex.printStackTrace();
+           }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 ArrayList<String> prueba5=new ArrayList();
 String d=" ";
@@ -590,10 +677,168 @@ String d=" ";
         System.out.println(d);
         generarArchivo(d,"ListaDobleAeropuerto");
         GenerarImagen("ListaDobleAeropuerto");
+        
+        String seleccionado="ListaDobleAeropuerto.png";
+        try {
+                File path = new File ("C:\\Users\\freddy\\Desktop\\Reportes\\"+seleccionado);
+                if(path.exists()){
+                 Desktop.getDesktop().open(path);
+                }else{
+                  JOptionPane.showMessageDialog(this, "No existe el Archivo");
+                }
+                }catch (IOException ex) {
+                ex.printStackTrace();
+           }
+        
+        
     }//GEN-LAST:event_listaDobleAeroActionPerformed
 
+    private void vueloR3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vueloR3ActionPerformed
+        try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+          
+        
+          for(int i=1;i<=100;i++){
+              String cont=String.valueOf(i);
+              Object[] params4 = new Object[]{cont};
+              String dato4=(String) client.execute("MostrarListaVuelo",params4);
+ 
+              vuelr3.addItem(dato4);
+         }
+           
+           
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+    }//GEN-LAST:event_vueloR3ActionPerformed
+ArrayList<String> prueba6=new ArrayList();
+ArrayList<String> prueba7=new ArrayList();
+ArrayList<String> prueba8=new ArrayList();
+ArrayList<String> prueba9=new ArrayList();
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+          
+        
+          for(int i=1;i<=100;i++){
+              String cont=String.valueOf(i);
+              Object[] params4 = new Object[]{cont};
+              String dato3=(String) client.execute("MostrarUsuariosVuelosVuelo",params4);
+              String dato5=(String) client.execute("MostrarReporte1",params4);
+              String dato8=(String) client.execute("MostrarUsuariosVuelosSalida",params4);
+              String dato9=(String) client.execute("MostrarUsuariosVuelosLLegada",params4);
+              String dato6=(String) client.execute("MostrarUsuarioVueloHoraS",params4);
+              String dato7=(String) client.execute("MostrarUsuarioVueloHoraLL",params4);
+              //String dato10=(String) client.execute("MostrarLista",params4);
+              //String dato11=(String) client.execute("MostrarContrasenia",params4);
+             
+              prueba6.add(dato3);
+              prueba7.add(dato5);
+              //prueba8.add(dato10);
+              //prueba9.add(dato11);
+         }
+           
+           
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void vuelr3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vuelr3ActionPerformed
+         jTable3.getTableHeader().setReorderingAllowed(false) ;
+
+        DefaultTableModel modelo=(DefaultTableModel) jTable3.getModel();
+        
+        for (int i = 0; i < jTable3.getRowCount(); i++) {
+           modelo.removeRow(i);
+           i-=1;
+       }
+        
+        Object [] filas=new Object[modelo.getColumnCount()];
+          
+           for(int i=0;i<prueba6.size();i++){
+              
+              if(prueba6.get(i).equals(vuelr3.getSelectedItem().toString())){
+                 //metodoComaprar nombre
+                  
+                /* if(prueba7.get(i).equals(prueba8.get(i))){
+                     filas[2]=prueba9.get(i);
+                 }*/ 
+                 filas[0]=prueba6.get(i);
+                 filas[1]=prueba7.get(i);
+                 modelo.addRow(filas);
+              }
+         }
+    }//GEN-LAST:event_vuelr3ActionPerformed
+
+    private void verListaDobleVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verListaDobleVuelosActionPerformed
+        String d=vuelr3.getSelectedItem().toString();
+           for(int i=0;i<prueba6.size();i++){
+              
+              if(prueba6.get(i).equals(vuelr3.getSelectedItem().toString())){
+                
+                                    
+                     d+="->"+prueba7.get(i);
+                 
+                
+              }
+         }
+           System.out.println(d);
+           
+         String d2=vuelr3.getSelectedItem().toString();
+         String c=" ";
+         for(int i=prueba6.size()-1;i>=0;i--){
+              
+              if(prueba6.get(i).equals(vuelr3.getSelectedItem().toString())){
+                
+                  c+=prueba7.get(i)+"->";             
+              }
+              
+         }
+         d2=c+d2;
+         System.out.println(d2);
+
+         String d3=" ";
+         d3=d+d2;
+         generarArchivo(d3,"ListaDobleVuelo");
+         GenerarImagen("ListaDobleVuelo");
+        
+        String seleccionado="ListaDobleVuelo.png";
+        try {
+                File path = new File ("C:\\Users\\freddy\\Desktop\\Reportes\\"+seleccionado);
+                if(path.exists()){
+                 Desktop.getDesktop().open(path);
+                }else{
+                  JOptionPane.showMessageDialog(this, "No existe el Archivo");
+                }
+                }catch (IOException ex) {
+                ex.printStackTrace();
+           }  
+           
+    }//GEN-LAST:event_verListaDobleVuelosActionPerformed
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      
+        CrearPDF(jTable3,"REPORTE1");
     }//GEN-LAST:event_jButton4ActionPerformed
     
     public void CrearPDF(JTable jTable1,String reporte)
@@ -726,6 +971,7 @@ String d=" ";
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -733,10 +979,15 @@ String d=" ";
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JButton listaDobleAero;
+    private javax.swing.JButton verListaDobleVuelos;
+    private javax.swing.JButton vueloR3;
     private javax.swing.JComboBox vuelos;
+    private javax.swing.JComboBox vuelr3;
     // End of variables declaration//GEN-END:variables
 }
