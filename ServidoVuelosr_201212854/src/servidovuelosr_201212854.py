@@ -105,7 +105,8 @@ class Lista:
             #else:
              #   print "No exitste"
            temporal=temporal.siguiente
-           
+                
+    
     def Reporte1(self,nom):
         print("********"+nom)
         temporal=self.cabeza
@@ -447,8 +448,18 @@ raiz = None
 def sins(dato): #simple insertar
 	global raiz
 	raiz = insertar(raiz, dato)
-        return mostrar(raiz)
 
+def MostrarSins(nom):
+    return mostrar(raiz)
+
+
+raiz2 = None
+def sins2(dato): #simple insertar
+	global raiz2
+	raiz2 = insertar(raiz2, dato)
+
+def MostrarSins2(nom):
+    return mostrar(raiz2)
 
 def list_contents(name):
     return name+' Vuelos'
@@ -534,6 +545,7 @@ def MostrarInicioSesion(nom,cont):
 def MostrarReporte1(nom):
     return listaUsuariosVuelos.Reporte1(str(nom))
 
+
 server.register_function(list_contents)
 server.register_function(suma)
 server.register_function(ListaDoble)
@@ -562,6 +574,9 @@ server.register_function(MostrarUsuarioVueloHoraS)
 server.register_function(MostrarUsuarioVueloHoraLL)
 server.register_function(MostrarInicioSesion)
 server.register_function(MostrarReporte1)
+server.register_function(MostrarSins)
+server.register_function(sins2)
+server.register_function(MostrarSins2)
 
 try:
     print 'Use Control-C to exit'

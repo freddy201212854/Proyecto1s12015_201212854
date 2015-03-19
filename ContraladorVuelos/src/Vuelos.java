@@ -312,7 +312,7 @@ public class Vuelos extends javax.swing.JFrame {
                    
            Object[] parametrosUsuario = new Object[]{conta,nom,pa,contrase};
            String dato=(String) client.execute("ListaAeropuerto",parametrosUsuario);
-                System.out.println("datos: "+dato);
+           System.out.println("datos: "+dato);
           
           
         } catch (XmlRpcException e) { 
@@ -378,7 +378,11 @@ public class Vuelos extends javax.swing.JFrame {
            config.setServerURL(new URL("http://localhost:9000"));
            client=new XmlRpcClient();
            client.setConfig(config);
-                   
+           
+           Object[] paramsavl = new Object[]{id};
+           String datoavl=(String) client.execute("sins2",paramsavl);           
+           System.out.println(datoavl);
+           
            Object[] parametrosVuelo = new Object[]{conta,id,aerop,salida,llega,hSalida,hLLegada,primeraPasajero.getText().trim(),turistaPasajero.getText().trim(),ejecutivaPasajero.getText().trim(),primeraCosto.getText().trim(),turistaCosto.getText().trim(),ejecutivaCosto.getText().trim()};
            String dato=(String) client.execute("ListaVuelos",parametrosVuelo);
            

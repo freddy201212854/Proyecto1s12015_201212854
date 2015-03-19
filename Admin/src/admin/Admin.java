@@ -9,11 +9,14 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
@@ -41,6 +44,7 @@ public class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         vuelos = new javax.swing.JComboBox();
@@ -48,11 +52,25 @@ public class Admin extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         cargarUsua = new javax.swing.JButton();
         CargandoVuelos = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        CrearPDF = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        comboAeropuerto = new javax.swing.JComboBox();
+        VerAero = new javax.swing.JButton();
+        VuelsoR2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        listaDobleAero = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -87,10 +105,10 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CrearPDF.setText("CrearPDF");
+        CrearPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CrearPDFActionPerformed(evt);
             }
         });
 
@@ -106,14 +124,14 @@ public class Admin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cargarUsua))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(CrearPDF)
                         .addGap(100, 100, 100))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +140,8 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(vuelos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(CrearPDF)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cargarUsua)
@@ -131,22 +149,151 @@ public class Admin extends javax.swing.JFrame {
                 .addGap(36, 36, 36))
         );
 
-        jTabbedPane1.addTab("Reporte1", jPanel1);
+        jTabbedPane1.addTab("REPORTE 1", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Aeropuerto", "Vuelo"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 600, 300));
+
+        comboAeropuerto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAeropuertoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboAeropuerto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 180, -1));
+
+        VerAero.setText("Ver Aeropuertos");
+        VerAero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerAeroActionPerformed(evt);
+            }
+        });
+        jPanel2.add(VerAero, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, -1, -1));
+
+        VuelsoR2.setText("Cargar Vuelos");
+        VuelsoR2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VuelsoR2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(VuelsoR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 430, -1, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, -1, -1));
+
+        jTabbedPane1.addTab("REPORTE 2", jPanel2);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 954, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 466, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("REPORTE3", jPanel4);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 810, 469));
+        jButton2.setText("ARBOL AVL DE USUARIOS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("ARBOL DE VUELOS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        listaDobleAero.setText("Generar");
+        listaDobleAero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaDobleAeroActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(554, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton4)
+                                    .addComponent(jButton3))
+                                .addGap(23, 23, 23)))
+                        .addGap(243, 243, 243))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(listaDobleAero)
+                        .addGap(302, 302, 302))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jButton2)
+                .addGap(49, 49, 49)
+                .addComponent(jButton3)
+                .addGap(71, 71, 71)
+                .addComponent(listaDobleAero)
+                .addGap(49, 49, 49)
+                .addComponent(jButton4)
+                .addContainerGap(156, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("ESTRUCTURAS", jPanel5);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -154,9 +301,7 @@ public class Admin extends javax.swing.JFrame {
     ArrayList<String> prueba2=new ArrayList();
     
     private void vuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vuelosActionPerformed
-
-        
-          
+     
         jTable1.getTableHeader().setReorderingAllowed(false) ;
 
         DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
@@ -245,13 +390,215 @@ public class Admin extends javax.swing.JFrame {
             }   
     }//GEN-LAST:event_CargandoVuelosActionPerformed
 
+    private void CrearPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearPDFActionPerformed
+        CrearPDF(jTable1,"REPORTE1");
+    }//GEN-LAST:event_CrearPDFActionPerformed
+
+    private void VerAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerAeroActionPerformed
+         try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+         
+           for(int i=1;i<=100;i++){
+            String cont2=String.valueOf(i);
+            System.out.println("contador2: "+cont2);
+            Object[] params4 = new Object[]{cont2};
+            String dato2=(String) client.execute("MostrarListaAero",params4);
+           
+            comboAeropuerto.addItem(dato2);
+          
+           }
+           
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }        
+    }//GEN-LAST:event_VerAeroActionPerformed
+    ArrayList<String> prueba3=new ArrayList();
+    ArrayList<String> prueba4=new ArrayList();
+    private void VuelsoR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VuelsoR2ActionPerformed
+        try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+         
+           for(int i=1;i<=100;i++){
+            String cont2=String.valueOf(i);
+            System.out.println("contador2: "+cont2);
+            Object[] params4 = new Object[]{cont2};
+            String dato3=(String) client.execute("MostrarListaVuelo",params4);
+            String dato2=(String) client.execute("MostrarVueloAero",params4);
+            
+            prueba3.add(dato3);
+            prueba4.add(dato2);
+           }
+           
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_VuelsoR2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CrearPDF(jTable2,"REPORTE2");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboAeropuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAeropuertoActionPerformed
+        jTable2.getTableHeader().setReorderingAllowed(false) ;
+        DefaultTableModel modelo=(DefaultTableModel) jTable2.getModel();
+        
+        for (int i = 0; i < jTable2.getRowCount(); i++) {
+           modelo.removeRow(i);
+           i-=1;
+        }
+        
+        Object [] filas=new Object[modelo.getColumnCount()];
+          
+        for(int i=0;i<prueba4.size();i++){
+            
+            if(prueba4.get(i).equals(comboAeropuerto.getSelectedItem().toString()))
+            {
+                //System.out.println(prueba3.get(i)+"---"+prueba4.get(i));
+                 filas[0]=prueba4.get(i);
+                 filas[1]=prueba3.get(i);
+                 modelo.addRow(filas);
+                
+            }
+        }
+        
+    }//GEN-LAST:event_comboAeropuertoActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         CrearPDF();
+          try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+                   
+           Object[] params4 = new Object[]{"no"};
+           String dato3=(String) client.execute("MostrarSins",params4);
+              System.out.println(dato3);
+              
+           generarArchivo(dato3,"AVLUsuarios");   
+           GenerarImagen("AVLUsuarios");  
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+                   
+           Object[] params4 = new Object[]{"no"};
+           String dato3=(String) client.execute("MostrarSins2",params4);
+              System.out.println(dato3);
+              
+           generarArchivo(dato3,"AVLId");   
+           GenerarImagen("AVLId");  
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_jButton3ActionPerformed
+ArrayList<String> prueba5=new ArrayList();
+String d=" ";
+    private void listaDobleAeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDobleAeroActionPerformed
+        try { 
+            XmlRpcClient client = null;
+	    // Generar el Cliente 
+	   XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
+
+
+           config.setServerURL(new URL("http://localhost:9000"));
+                    
+           client=new XmlRpcClient();
+           client.setConfig(config);
+               
+         for(int i=1;i<=100;i++){
+            String cont2=String.valueOf(i);
+            Object[] params4 = new Object[]{cont2};
+            String dato3=(String) client.execute("MostrarListaAero",params4);              
+            System.out.println(dato3);
+            prueba5.add(dato3);
+            
+         }
+            
+        } catch (XmlRpcException e) { 
+	    System.out.println("Error en XML-RPC: " + e.getMessage());
+	}   catch (MalformedURLException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+          String datos=" "; 
+        for(int i=0;i<prueba5.size();i++){
+            
+            if(i==0){
+             datos=prueba5.get(i);
+            }
+            if(i>0){
+              datos+="->"+prueba5.get(i);
+            }
+            // System.out.println(datos);
+         }
+        //System.out.println("normal: "+datos);  
+       d=datos; 
+        String datos2=" ";
+        for(int i=prueba5.size()-1;i>=0;i--){
+            
+            if(i==prueba5.size()-1){
+              datos2=prueba5.get(i);
+            }
+            if(i<prueba5.size()-1){
+                datos2+="->"+prueba5.get(i);
+            }
+             //System.out.println(datos);
+         }        
+        //System.out.println("inverso: "+datos2);
+        d+="\n"+datos2;
+        System.out.println(d);
+        generarArchivo(d,"ListaDobleAeropuerto");
+        GenerarImagen("ListaDobleAeropuerto");
+    }//GEN-LAST:event_listaDobleAeroActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+      
+    }//GEN-LAST:event_jButton4ActionPerformed
     
-    public void CrearPDF()
+    public void CrearPDF(JTable jTable1,String reporte)
     {
-        String v=" ";
+        String v=" ",col=" ";
         for (int i = 0; i <jTable1.getRowCount(); i++) {
                   for(int j=0;j<jTable1.getColumnCount();j++){
                       
@@ -260,27 +607,77 @@ public class Admin extends javax.swing.JFrame {
                       }
                       else{
                           v+=jTable1.getValueAt(i, j).toString();
-                          //System.out.println(v);
-                            Crear(v);
+                            Crear(v,reporte);
 
                       }
                   }
                }             
     }
-    public void Crear(String datos)
+    public void Crear(String datos,String reporte)
     {
          try{
-                FileOutputStream archivo = new FileOutputStream("C:\\hola.pdf");
-      Document documento = new Document();
-      PdfWriter.getInstance(documento, archivo);
-      documento.open();
-      documento.add(new Paragraph("REPORTE1:"));
-      documento.add(new Paragraph(datos));
-      documento.close();
-       }catch(Exception e)
-       {
+            FileOutputStream archivo = new FileOutputStream("C:\\Users\\freddy\\Desktop\\Reportes\\"+reporte+".pdf");
+            Document documento = new Document();
+            PdfWriter.getInstance(documento, archivo);
+            documento.open();
+            documento.add(new Paragraph(reporte+":"));
+            documento.add(new Paragraph(datos));
+            documento.close();
+        }catch(Exception e)
+         {
            System.out.println(e);
-       }
+         }
+    }
+     public static void generarArchivo(String texto,String arbol)//genera el archivo para genera la imagen de la lista
+    {
+      FileWriter fichero = null;
+      PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Users\\freddy\\Desktop\\Reportes\\"+arbol+".txt");
+            pw = new PrintWriter(fichero);
+ 
+            
+                pw.println("digraph A{"+texto+"\r\n"+"}");
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+    public static void GenerarImagen(String arbol)//Genera la imagen de la lista
+    {
+        try{
+           String dotPath="C:\\Graphviz\\release\\bin\\dot.exe"; 
+           String fileInputPath="C:\\Users\\freddy\\Desktop\\Reportes\\"+arbol+".txt";
+           String fileOutputPath="C:\\Users\\freddy\\Desktop\\Reportes\\"+arbol+".png";
+           String tParam="-Tjpg";
+           String tOParam="-o";
+           
+           
+           String[] cmd=new String[5];
+           cmd[0]=dotPath;
+           cmd[1]=tParam;
+           cmd[2]=fileInputPath;
+           cmd[3]=tOParam;
+           cmd[4]=fileOutputPath;
+           
+           Runtime rt=Runtime.getRuntime();
+           rt.exec(cmd);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }finally{
+            
+        }
+    
     }
     /**
      * @param args the command line arguments
@@ -320,13 +717,26 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargandoVuelos;
+    private javax.swing.JButton CrearPDF;
+    private javax.swing.JButton VerAero;
+    private javax.swing.JButton VuelsoR2;
     private javax.swing.JButton cargarUsua;
+    private javax.swing.JComboBox comboAeropuerto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JButton listaDobleAero;
     private javax.swing.JComboBox vuelos;
     // End of variables declaration//GEN-END:variables
 }
